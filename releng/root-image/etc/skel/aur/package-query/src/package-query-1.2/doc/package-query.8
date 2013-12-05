@@ -1,0 +1,351 @@
+'\" t
+.\"     Title: package-query
+.\"    Author: [see the "Authors" section]
+.\" Generator: DocBook XSL Stylesheets v1.76.1 <http://docbook.sf.net/>
+.\"      Date: 2011-09-08
+.\"    Manual: Package-query Manual
+.\"    Source: Package-query 0.9
+.\"  Language: English
+.\"
+.TH "PACKAGE\-QUERY" "8" "2011\-09\-08" "Package\-query 0\&.9" "Package\-query Manual"
+.\" -----------------------------------------------------------------
+.\" * Define some portability stuff
+.\" -----------------------------------------------------------------
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" http://bugs.debian.org/507673
+.\" http://lists.gnu.org/archive/html/groff/2009-02/msg00013.html
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.\" -----------------------------------------------------------------
+.\" * set default formatting
+.\" -----------------------------------------------------------------
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.\" -----------------------------------------------------------------
+.\" * MAIN CONTENT STARTS HERE *
+.\" -----------------------------------------------------------------
+.SH "NAME"
+package-query \- Query alpm database and/or AUR
+.SH "SYNOPSIS"
+.sp
+\fIpackage\-query\fR <options> [targets \&...]
+.SH "DESCRIPTION"
+.sp
+Package\-query query Alpm and AUR with the possibility to format output\&.
+.SH "OPTIONS"
+.PP
+\fB\-A, \-\-aur\fR
+.RS 4
+Query AUR database\&.
+.RE
+.PP
+\fB\-L, \-\-list\-repo\fR
+.RS 4
+List configured repositories\&.
+.RE
+.PP
+\fB\-Q, \-\-query\fR
+.RS 4
+Query local database\&.
+.RE
+.PP
+\fB\-S, \-\-sync\fR
+.RS 4
+Query sync database\&.
+.RE
+.PP
+\fB\-v, \-\-version\fR
+.RS 4
+Display version and exit\&.
+.RE
+.PP
+\fB\-h, \-\-help\fR
+.RS 4
+Show help\&.
+.RE
+.PP
+\fB\-\-aur\-url <AUR url>\fR
+.RS 4
+Specify a custom AUR url (default to
+http://aur\&.archlinux\&.org)\&.
+.RE
+.PP
+\fB\-b, \-\-dbpath <database path>\fR
+.RS 4
+Specify new database location, default to <root>/var/lib/pacman\&.
+.RE
+.PP
+\fB\-c, \-\-config <configuration file>\fR
+.RS 4
+Specify a custom config, default to <root>/etc:pacman\&.conf\&.
+.RE
+.PP
+\fB\-f, \-\-format <format>\fR
+.RS 4
+Format output, see
+Format options\&.
+.RE
+.PP
+\fB\-p, \-\-file <file>\fR
+.RS 4
+Query file\&.
+.RE
+.PP
+\fB\-q, \-\-quiet\fR
+.RS 4
+No output, return 0 if packages found, else 1\&.
+.RE
+.PP
+\fB\-r, \-\-root <root path>\fR
+.RS 4
+Specify a new root, default to /\&.
+.RE
+.PP
+\fB\-u, \-\-upgrades\fR
+.RS 4
+List updates available\&.
+.RE
+.PP
+\fB\-x, \-\-escape\fR
+.RS 4
+Escape \e" in output\&.
+.RE
+.PP
+\fB\-\-insecure\fR
+.RS 4
+Perform insecure ssl connection (if compiled with curl support)\&.
+.RE
+.PP
+\fB\-\-nocolor\fR
+.RS 4
+Output without colors\&.
+.RE
+.SH "COMMON SEARCH OPTIONS"
+.PP
+\fB\-1, \-\-just\-one\fR
+.RS 4
+Show first answer for each target (\fI\-i\fR)\&.
+.RE
+.PP
+\fB\-i, \-\-info\fR
+.RS 4
+Search by name (by default if no target)\&. Specify this option twice to search a package that provides the target\&.
+.RE
+.PP
+\fB\-\-qconflicts\fR
+.RS 4
+Query packages which conflicts with one of the targets\&.
+.RE
+.PP
+\fB\-\-qdepends\fR
+.RS 4
+Query packages which depends on one of the targets\&.
+.RE
+.PP
+\fB\-\-qprovides\fR
+.RS 4
+Query packages which provides one of the targets\&.
+.RE
+.PP
+\fB\-\-qreplaces\fR
+.RS 4
+Query packages which replaces one of the targets\&.
+.RE
+.PP
+\fB\-\-qrequires\fR
+.RS 4
+Query packages which requires one of the targets\&.
+.RE
+.PP
+\fB\-s, \-\-search\fR
+.RS 4
+Regex search for ALPM and SQL search for AUR\&.
+.RE
+.PP
+\fB\-\-sort [n,w,1,2]\fR
+.RS 4
+Return search results sorted by names (\fIn\fR), by votes (\fIw\fR), by installed date (\fI1\fR) or by theorical size (\fI2\fR)\&.
+.RE
+.SH "LOCAL DB SEARCH"
+.PP
+\fB\-m, \-\-foreign\fR
+.RS 4
+Filter result to packages that were not found in the sync database(s)\&. With
+\fI\-A\fR
+search if foreign packages exist in AUR\&.
+.RE
+.PP
+\fB\-e, \-\-explicit\fR
+.RS 4
+Only show packages explicitly installed\&.
+.RE
+.PP
+\fB\-d, \-\-deps\fR
+.RS 4
+Restrict output to packages installed as dependencie\&.
+.RE
+.PP
+\fB\-t, \-\-unrequired\fR
+.RS 4
+Restrict output to packages that are no more required\&.
+.RE
+.PP
+\fB\-u, \-\-upgrades\fR
+.RS 4
+Restrict output to packages that have available updates\&. With
+\fI\-A\fR
+search if foreign packages have updates on AUR\&.
+.RE
+.SH "SYNC DB SEARCH"
+.PP
+\fB\-l, \-\-list\fR
+.RS 4
+List repository content\&.
+.RE
+.SH "FORMAT OPTIONS"
+.sp
+Format can contain:
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+%a: architecture
+%B: backups file
+%C: conflicts with
+%d: description
+%D: denpends on
+%f: filename
+%F: package\*(Aqs files
+%I: install script
+%i: AUR ID
+%l: local version
+%L: last submission (AUR)
+%m: maintainer or packager
+%n: name
+%N: required by (Needed by)
+%O: optionnal deps
+%o: out of date (1 for true)
+%P: provides
+%R: replaces
+%r: repository, \*(Aqlocal\*(Aq for local packages
+%s: sync repository, respect \*(Aqpacman\&.conf\*(Aq order\&.
+%S: first submission (AUR)
+%t: target submitted with command
+%u: file/tarball url
+%U: software url
+%v: version, depends on DB
+%V: package version in sync db
+%w: AUR votes
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+%1: install date
+%2: theorical size
+%3: real size
+%4: package state\&. Show a combination of the following states:
+        1: foreign
+        2: explicitly installed
+        4: installed as dependency
+        8: unrequired
+        16: update available
+        32: package part of group
+%5: download size
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+\e\e, \ee (for \e033), \en, \er and \et are also possible format options\&.
+.fi
+.if n \{\
+.RE
+.\}
+.PP
+\fB\-\-delimiter <delim>\fR
+.RS 4
+For format like
+\fI%B\fR,
+\fI%C\fR
+\&..., define separator\&. Default to space\&.
+.RE
+.SH "ENVIRONMENT VARIABLES"
+.PP
+\fBPQ_COLORS\fR
+.RS 4
+Specifies the colors used in default output\&. Its value is a colon\-separated list of keys\&. Supported keys are:
+
+\fBno=\fR
+No color\&. (default: 0)
+
+\fBnb=\fR
+Numbers (when numbering lines) color\&. (default: 1;33;7)
+
+\fBpkg=\fR
+Package name\&. (default: 1)
+
+\fBver=\fR
+Package version\&. (default: 1;32)
+
+\fBlver=\fR
+Installed version\&. (default: 1;31;7)
+
+\fBinstalled=\fR
+\fI[installed]\fR
+color\&. (default: 1;33;7)
+
+\fBgrp=\fR
+Groups\&. (default: 1;34)
+
+\fBod=\fR
+Out of date status\&. (default: 1;33;7)
+
+\fBvotes=\fR
+Number of votes\&. (default: 1;33;7)
+
+\fBdsc=\fR
+Description\&. (default: 0)
+
+\fBorphan=\fR
+Package version when there is no maintainer
+
+\fBother=\fR
+Respository not explicitly defined\&. (default: 1;35)
+
+\fB[repo name]=\fR
+Repository specific color\&. (default:
+\fItesting=1;31:core=1;31:extra=1;32:local=1;33\fR)
+.RE
+.SH "SEE ALSO"
+.sp
+\fBpacman\fR(8), \fBpacman.conf\fR(5)
+.SH "BUGS"
+.sp
+http://bugs\&.archlinux\&.fr
+.SH "AUTHORS"
+.sp
+Current maintainers:
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+Tuxce <tuxce\&.net@gmail\&.com>
+.RE

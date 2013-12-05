@@ -1,0 +1,252 @@
+'\" t
+.\"     Title: yaourtrc
+.\"    Author: [see the "Authors" section]
+.\" Generator: DocBook XSL Stylesheets v1.77.1 <http://docbook.sf.net/>
+.\"      Date: 2012-09-19
+.\"    Manual: Yaourt Manual
+.\"    Source: Yaourt 1.1
+.\"  Language: English
+.\"
+.TH "YAOURTRC" "5" "2012\-09\-19" "Yaourt 1\&.1" "Yaourt Manual"
+.\" -----------------------------------------------------------------
+.\" * Define some portability stuff
+.\" -----------------------------------------------------------------
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" http://bugs.debian.org/507673
+.\" http://lists.gnu.org/archive/html/groff/2009-02/msg00013.html
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.\" -----------------------------------------------------------------
+.\" * set default formatting
+.\" -----------------------------------------------------------------
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.\" -----------------------------------------------------------------
+.\" * MAIN CONTENT STARTS HERE *
+.\" -----------------------------------------------------------------
+.SH "NAME"
+yaourtrc \- yaourt configuration file
+.SH "SYNOPSIS"
+.sp
+/etc/yaourtrc
+.sp
+\fB$HOME\fR/yaourtrc
+.SH "DESCRIPTION"
+.sp
+\fByaourt\fR(8) obtains configuration data from the following sources in the following order:
+.sp
+.RS 4
+.ie n \{\
+\h'-04' 1.\h'+01'\c
+.\}
+.el \{\
+.sp -1
+.IP "  1." 4.2
+.\}
+command\-line options
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04' 2.\h'+01'\c
+.\}
+.el \{\
+.sp -1
+.IP "  2." 4.2
+.\}
+user\(cqs configuration file ($HOME/\&.yaourtrc)
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04' 3.\h'+01'\c
+.\}
+.el \{\
+.sp -1
+.IP "  3." 4.2
+.\}
+system\-wide configuration file (/etc/yaourtrc)
+.RE
+.SH "GENERAL OPTIONS"
+.PP
+\fBREPOS=()\fR
+.RS 4
+List of repositories where PKGBUILD can be retreived by rsync\&. (see /etc/abs\&.conf)
+.RE
+.PP
+\fBAUTOSAVEBACKUPFILE=0\fR
+.RS 4
+If set to 1, after each install, yaourt search for config files to backup (\&.pacnew files)\&. It store all files in /var/lib/yaourt/\&. These files will be used later with yaourt \-C to automerge current config files with new config files (\&.pacnew)\&. This option requires root password or sudo configured to allow runing /usr/bin/pacdiffviewer without password\&.
+.RE
+.PP
+\fBDEVELBUILDDIR="/var/abs/local/yaourtbuild"\fR
+.RS 4
+Specify directory where to clone, build devel packages\&.
+.RE
+.PP
+\fBDEVEL=0\fR
+.RS 4
+If set to 1, always search for new version of developpement CVS/SVN packages when upgrading (yaourt \-Su)\&.
+.RE
+.PP
+\fBEDITOR="$EDITOR"\fR
+.RS 4
+Define the editor to use (if the environment variable $EDITOR is not set) for PKGBUILD editing\&. Editor should not fork, for gvim: EDITOR="gvim \-\-nofork"
+.RE
+.PP
+\fBFORCE=0\fR
+.RS 4
+If set to 1, always bypass file conflict checks and overwrite conflicting files\&.
+.RE
+.PP
+\fBTMPDIR="/tmp"\fR
+.RS 4
+Specify the folder to save tempory files (default is /tmp)\&.
+.RE
+.SH "SUDO OPTIONS"
+.PP
+\fBSUDONOVERIF=0\fR
+.RS 4
+If set to 1, yaourt doesn\(cqt do sudo checks\&. (For users with timestamp_timeout=0 in sudoers)
+.RE
+.PP
+\fBSUDOREDIRECT=1\fR
+.RS 4
+If set to 0, yaourt doesn\(cqt redirect
+\fIsudo\fR
+standard output\&. (For users with fingerprint authentification)
+.RE
+.SH "AUR OPTIONS"
+.PP
+\fBAURCOMMENT=5\fR
+.RS 4
+Show X last comments for packages built from AUR Unsupported\&. 0 to disable comments display, default to 5\&.
+.RE
+.PP
+\fBAURDEVELONLY=0\fR
+.RS 4
+If set to 1, search only for new version of foreign developpement CVS/SVN packages when upgrading (yaourt \-Su \-\-devel)\&.
+.RE
+.PP
+\fBAURSEARCH=1\fR
+.RS 4
+If set to 0, don\(cqt search for packages on AUR Unsupported
+.RE
+.PP
+\fBAURUPGRADE=0\fR
+.RS 4
+If set to 1, always search for new version of packages installed from AUR Unsupported when upgrading (yaourt \-Su)\&.
+.RE
+.PP
+\fBAURURL="http://aur\&.archlinux\&.org"\fR
+.RS 4
+Specify a custom AUR url\&.
+.RE
+.PP
+\fBAURVOTE=1\fR
+.RS 4
+If set to 0, don\(cqt check the vote status for inclusion/keeping in [community], and it is unable to vote\&.
+.RE
+.SH "BUILD OPTIONS"
+.PP
+\fBEXPORT=0\fR
+.RS 4
+Export built package to $EXPORTDIR or, if not defined to $PKGDEST (see
+\fBmakepkg.conf\fR(5))\&.
+\fIEXPORT=2\fR
+exports all built packages to pacman cache directory (see
+\fBpacman.conf\fR(5))\&.
+.RE
+.PP
+\fBEXPORTSRC=0\fR
+.RS 4
+Export sources to $EXPORTDIR or, if not defined to $SRCPKGDEST or $PKGDEST (see
+\fBmakepkg.conf\fR(5))\&.
+.RE
+.PP
+\fBEXPORTDIR=""\fR
+.RS 4
+Specify the folder where yaourt export built packages for local repository\&.
+.RE
+.SH "PROMPT OPTIONS"
+.PP
+\fBNOCONFIRM=0\fR
+.RS 4
+If set to 1, always use the default choice without confirmation\&.
+.RE
+.PP
+\fBUP_NOCONFIRM=0\fR
+.RS 4
+If set to 1, do not prompt for AUR or build upgrades\&.
+.RE
+.PP
+\fBBUILD_NOCONFIRM=0\fR
+.RS 4
+If set to 1, do not prompt while building\&.
+.RE
+.PP
+\fBEDITFILES=1\fR
+.RS 4
+If set to 0, don\(cqt propose to edit files (from AUR or from ABS)\&.
+.RE
+.PP
+\fBNOENTER=1\fR
+.RS 4
+If set to 0, user needs to press Enter for each "yes/no" question\&.
+.RE
+.SH "OUTPUT OPTIONS"
+.PP
+\fBUSECOLOR=1\fR
+.RS 4
+If 0, disable colors\&.
+.RE
+.PP
+\fBDETAILUPGRADE=1\fR
+.RS 4
+0 : no detailed ouput and no update classification
+
+1 : no detailed ouput but updates classified
+
+2 : show packages not found on aur / version mismatch / up to date / and those marked as out of date
+
+4 : same as 2 except for up to date packages
+.RE
+.PP
+\fBSHOWORPHANS=1\fR
+.RS 4
+If set to 0, don\(cqt search for orphans
+.RE
+.PP
+\fBTERMINALTITLE=1\fR
+.RS 4
+If set to 0, don\(cqt show the current yaourt\(cqs action in terminal title\&. By default, yaourt show messages like "Installing xxx from AUR"\&.
+.RE
+.SH "COMMAND OPTIONS"
+.PP
+\fBPACMAN="pacman"\fR
+.RS 4
+Specify the pacman binary to use with yaourt
+.RE
+.PP
+\fBDIFFEDITCMD="vimdiff"\fR
+.RS 4
+Define the diff editor to use ($DIFFEDITCMD file1 file2)\&.
+.RE
+.SH "SEE ALSO"
+.sp
+\fByaourt\fR(8)
+.sp
+See the yaourt website at http://archlinux\&.fr/yaourt\-en/ for more info\&.
+.SH "BUGS"
+.sp
+http://bugs\&.archlinux\&.fr
+.SH "AUTHORS"
+.sp
+Julien MISCHKOWITZ <wain@archlinux\&.fr>
+.sp
+Current maintainers:
+.sp
+Tuxce <tuxce\&.net@gmail\&.com>
