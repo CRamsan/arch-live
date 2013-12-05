@@ -26,6 +26,6 @@ if [ ! -d /home/cesar ]; then
 fi
 # Copy files over to home
 #su -c "cp -r /etc/skel/.* /home/cesar/" cesar
-cp -r /etc/skel/.* /home/cesar/ cesar
-cp -r /etc/skel/aur /home/cesar/ cesar
+cp -r /etc/skel/.* /home/cesar/
+cp -r /etc/skel/aur /home/cesar/
 chown -r cesar:cesar /home/cesar
