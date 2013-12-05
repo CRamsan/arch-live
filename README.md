@@ -6,3 +6,4 @@ Currently is a base system with some of my used packages
 - jdk7
 - colored bash with autocompletion and fortune
 - google authenticator and yubikey PAM
+- Yaourt included 
