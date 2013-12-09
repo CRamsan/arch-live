@@ -26,8 +26,8 @@ if [ ! -d /home/cesar ]; then
 fi
 # Copy files over to home
 #su -c "cp -r /etc/skel/.* /home/cesar/" cesar
-cp -r /etc/skel/.yubico /home/cesar/
 cp -r /etc/skel/.bashrc /home/cesar/
-cp -r /etc/skel/.google_authenticator /home/cesar/
 cp -r /etc/skel/aur /home/cesar/
+cp -r /etc/skel/package.aur /home/cesar/
+
 chown -R cesar:cesar /home/cesar
