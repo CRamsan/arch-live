@@ -2,6 +2,7 @@ chromium-pepper-flash-stable
 google-authenticator-libpam-git
 libyubikey
 package-query
+pulseaudio-ctl 
 yaourt
 yubico-c-client-git
 yubico-pam-git
